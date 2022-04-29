@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 var userSchema = mongoose.Schema({
@@ -29,7 +29,5 @@ var userSchema = mongoose.Schema({
 }, {timestamps: true});
 
 userSchema.plugin(AutoIncrement, {inc_field: 'userId'});
-
-
 const User = mongoose.model('User', userSchema);
 module.exports = User;
