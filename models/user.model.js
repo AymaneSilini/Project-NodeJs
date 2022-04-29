@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   alias: {
     type:String,
     required: true

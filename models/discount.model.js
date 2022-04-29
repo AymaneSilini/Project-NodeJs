@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-var dicountSchema = mongoose.Schema({
+const dicountSchema = mongoose.Schema({
   price:{
     type: Float,
     required: true
