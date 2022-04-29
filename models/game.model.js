@@ -1,23 +1,56 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 var Category = mongoose.model('Category');
 var Platform = mongoose.model('Platform');
 var Discount = mongoose.model('Discount');
 var Requirements = mongoose.model('Requirements');
 
-var gameSchema = new Schema({
-  name: String,
-  date: Date,
-  photo: String,
-  video: String,
-  synopsis: String,
-  developer: String,
-  price: Float,
-  category: { type: Schema.ObjectId, ref: "Category" },
-  platform: { type: Schema.ObjectId, ref: "Platform" },
-  requiremens: { type: Schema.ObjectId, ref: "Requirements" },
-  discount: { type: Schema.ObjectId, ref: "Discount" },
+var gameSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  photo: {
+    type: String,
+    required: true
+  },
+  video: {
+    type: String,
+    required: true
+  },
+  synopsis: {
+    type: String,
+    required: true
+  },
+  developer: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Float,
+    required: true
+  },
+  category: { 
+    type: Schema.ObjectId, ref: "Category" ,
+    required: true
+  },
+  platform: { 
+    type: Schema.ObjectId, ref: "Platform" ,
+    required: true
+  },
+  requiremens: { 
+    type: Schema.ObjectId, ref: "Requirements" ,
+    required: true
+  },
+  discount: { 
+    type: Schema.ObjectId, ref: "Discount" ,
+    required: true
+  },
 
-});
+}, {timestamps: true});
 
-module.exports = mongoose.model("Game", gameSchema);
+gameSchema.plugin(AutoIncrement, {inc_field: 'gameId'});
+
+
+const Game = mongoose.model('Game', gameSchema);
+module.exports = Game;

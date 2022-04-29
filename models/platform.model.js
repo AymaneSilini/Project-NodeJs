@@ -1,8 +1,15 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-var platformSchema = new Schema({
-  name: String,
-});
+var platformSchema = mongoose.Schema({
+  name:{
+    type: String,
+    required: true
+  }
+}, {timestamps: true});
 
-module.exports = mongoose.model("Platform", platformSchema);
+platformSchema.plugin(AutoIncrement, {inc_field: 'platformId'});
+
+
+const Platform = mongoose.model('Platform', platformSchema);
+module.exports = Platform;
