@@ -20,10 +20,10 @@ app.use(cors({
 
 app.use(express.json());
 
-mongoose.connect(DB_CONNECTION)
+mongoose.connect(process.env.DB_CONNECTION)
 .then(()=>console.log("connexion ok to database"))
 .then(app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+    console.log(`Listening on port ${process.env.PORT}`);
 }))
 .catch((err)=> console.log(err));
 
