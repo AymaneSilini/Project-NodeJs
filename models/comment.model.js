@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 const AutoIncrement = require('mongoose-sequence')(mongoose);
-const User = mongoose.model('User');
-const Game = mongoose.model('Game');
+var Schema = mongoose.Schema;
 
-const commentSchema = mongoose.Schema({
+const commentSchema = Schema({
   date: {
     type: Date, 
     required: true
