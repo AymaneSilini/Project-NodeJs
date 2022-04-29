@@ -50,7 +50,6 @@ function deleteDiscount (req, res) {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
-
 module.exports = {
     getDiscount, getDiscount, postDiscount,
     putDiscount, deleteDiscount
