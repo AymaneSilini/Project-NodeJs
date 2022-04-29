@@ -15,7 +15,7 @@ var gameSchema = new Schema({
   price: Float,
   category: { type: Schema.ObjectId, ref: "Category" },
   platform: { type: Schema.ObjectId, ref: "Platform" },
-  requiremens: { type: Schema.ObjectId, ref: "Requirements" },
+  requirements: { type: Schema.ObjectId, ref: "Requirements" },
   discount: { type: Schema.ObjectId, ref: "Discount" },
 
 });
