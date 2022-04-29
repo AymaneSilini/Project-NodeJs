@@ -21,6 +21,7 @@ function postUser (req, res) {
         return res.status(400).send('Missing User\'s alias');
     }
     const User = new User({
+        alias:req.body.alias,
         lastName: req.body.lastName,
         firstname: req.body.firstname,
         alias : req.body.alias,
@@ -39,6 +40,7 @@ function putUser (req, res) {
         return res.status(400).send('Missing User\'s alias');
     }
     User.findOneAndUpdate({UserId: req.params.id}, {
+        name:req.body.name,
         lastName: req.body.lastName,
         firstname: req.body.firstname,
         alias : req.body.alias,

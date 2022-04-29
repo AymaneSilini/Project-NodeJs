@@ -1,9 +1,15 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-var discountSchema = new Schema({
-  price: Float,
-  date: Date,
-});
+var dicountSchema = mongoose.Schema({
+  price:{
+    type: Float,
+    required: true
+  }
+}, {timestamps: true});
 
-module.exports = mongoose.model("Discount", discountSchema);
+dicountSchema.plugin(AutoIncrement, {inc_field: 'discountId'});
+
+
+const Discount = mongoose.model('Discount', dicountSchema);
+module.exports = Discount;

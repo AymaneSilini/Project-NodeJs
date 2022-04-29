@@ -1,8 +1,15 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-var categorySchema = new Schema({
-  name: String,
-});
+var categorySchema = mongoose.Schema({
+  name:{
+    type: String,
+    required: true
+  }
+}, {timestamps: true});
 
-module.exports = mongoose.model("Category", categorySchema);
+categorySchema.plugin(AutoIncrement, {inc_field: 'categoryId'});
+
+
+const Category = mongoose.model('Category', categorySchema);
+module.exports = Category;
