@@ -1,11 +1,11 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const AutoIncrement = require('mongoose-sequence')(mongoose);
-var Category = mongoose.model('Category');
-var Platform = mongoose.model('Platform');
-var Discount = mongoose.model('Discount');
-var Requirements = mongoose.model('Requirements');
+const Category = mongoose.model('Category');
+const Platform = mongoose.model('Platform');
+const Discount = mongoose.model('Discount');
+const Requirements = mongoose.model('Requirements');
 
-var gameSchema = mongoose.Schema({
+const gameSchema = mongoose.Schema({
   name: {
     type: String,
     required: true

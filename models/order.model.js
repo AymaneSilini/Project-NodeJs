@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const AutoIncrement = require('mongoose-sequence')(mongoose);
-var User = mongoose.model('User');
+const User = mongoose.model('User');
 
-var orderSchema = mongoose.Schema({
+const orderSchema = mongoose.Schema({
   address: {
     type: String,
     required: true

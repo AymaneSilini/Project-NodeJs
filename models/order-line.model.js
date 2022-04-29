@@ -1,9 +1,9 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const AutoIncrement = require('mongoose-sequence')(mongoose);
-var Order = mongoose.model('Order');
-var Game = mongoose.model('Game');
+const Order = mongoose.model('Order');
+const Game = mongoose.model('Game');
 
-var orderLineSchema = mongoose.Schema({
+const orderLineSchema = mongoose.Schema({
   price: {
     type: Float,
     required: true
