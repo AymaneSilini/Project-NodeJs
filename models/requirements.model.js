@@ -1,12 +1,32 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-var requirementsSchema = new Schema({
-    OS: String, 
-    processor: String, 
-    memory: STring, 
-    graphics: String, 
-    storage: String,
-});
+var requirementsSchema = mongoose.Schema({
 
-module.exports = mongoose.model("Requirements", requirementsSchema);
+    OS: {
+        type: String, 
+        required: true
+    },
+    processor: {
+        type: String, 
+        required: true
+    }, 
+    memory: {
+        type: String, 
+        required: true
+    },
+    graphics: {
+        type: String, 
+        required: true
+    },
+    storage: {
+        type: String, 
+        required: true
+    },
+}, {timestamps: true});
+
+requirementsSchema.plugin(AutoIncrement, {inc_field: 'requirementsId'});
+
+
+const Requirements = mongoose.model('Requirements', requirementsSchema);
+module.exports = Requirements;
