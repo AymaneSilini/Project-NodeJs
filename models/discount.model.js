@@ -3,7 +3,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const dicountSchema = mongoose.Schema({
   price:{
-    type: Float,
+    type: Number,
     required: true
   }
 }, {timestamps: true});
