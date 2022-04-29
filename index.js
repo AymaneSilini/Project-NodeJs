@@ -23,7 +23,7 @@ app.use(express.json());
 mongoose.connect(process.env.DB_CONNECTION)
 .then(()=>console.log("connexion ok to database"))
 .then(app.listen(PORT, () => {
-    console.log(`Listening on port ${process.env.PORT}`);
+    console.log(`Listening on port ${process.env.gitPORT}`);
 }))
 .catch((err)=> console.log(err));
 
