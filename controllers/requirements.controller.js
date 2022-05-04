@@ -6,7 +6,7 @@ function getRequirements(req, res) {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
-function getRequirements (req, res) {
+function getRequirement (req, res) {
     Requirements.findOne({RequirementsId: req.params.id})
     .then((result) =>{
         if (result) {
@@ -58,6 +58,6 @@ function deleteRequirements (req, res) {
 }
 
 module.exports = {
-    getRequirements, getRequirements, postRequirements,
+    getRequirements, getRequirement, postRequirements,
     putRequirements, deleteRequirements
 }

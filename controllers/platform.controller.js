@@ -1,6 +1,6 @@
 const Platform = require('../models/platform.model');
 
-function getPlatform(req, res) {
+function getPlatforms(req, res) {
     Platform.find()
     .then((result) => {
         res.send(result);
@@ -50,6 +50,6 @@ function deletePlatform (req, res) {
 }
 
 module.exports = {
-    getPlatform, getPlatform, postPlatform,
+    getPlatforms, getPlatform, postPlatform,
     putPlatform, deletePlatform
 }

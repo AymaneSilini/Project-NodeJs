@@ -5,7 +5,7 @@ const app = express();
 
 
 requirementsRouter.get('/', requirementsController.getRequirements);
-requirementsRouter.get('/:id', requirementsController.getRequirements);
+requirementsRouter.get('/:id', requirementsController.getRequirement);
 requirementsRouter.post('/', requirementsController.postRequirements);
 requirementsRouter.put('/:id', requirementsController.putRequirements);
 requirementsRouter.delete('/:id', requirementsController.deleteRequirements);

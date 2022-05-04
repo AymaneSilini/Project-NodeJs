@@ -4,7 +4,7 @@ const platformRouter = express.Router();
 const app = express();
 
 
-platformRouter.get('/', platformController.getPlatform);
+platformRouter.get('/', platformController.getPlatforms);
 platformRouter.get('/:id', platformController.getPlatform);
 platformRouter.post('/', platformController.postPlatform);
 platformRouter.put('/:id', platformController.putPlatform);

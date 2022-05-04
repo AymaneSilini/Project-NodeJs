@@ -1,6 +1,6 @@
 const Comment = require('../models/comment.model');
 
-function getComment(req, res) {
+function getComments(req, res) {
     Comment.find()
     .then((result) => {
         res.send(result);
@@ -56,6 +56,6 @@ function deleteComment (req, res) {
 }
 
 module.exports = {
-    getComment, getComment, postComment,
+    getComments, getComment, postComment,
     putComment, deleteComment
 }

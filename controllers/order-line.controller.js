@@ -1,6 +1,6 @@
 const OrderLine = require('../models/order-line.model');
 
-function getOrderLine(req, res) {
+function getOrderLines(req, res) {
     OrderLine.find()
     .then((result) => {
         res.send(result);
@@ -56,6 +56,6 @@ function deleteOrderLine (req, res) {
 }
 
 module.exports = {
-    getOrderLine, getOrderLine, postOrderLine,
+    getOrderLines, getOrderLine, postOrderLine,
     putOrderLine, deleteOrderLine
 }

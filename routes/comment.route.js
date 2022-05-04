@@ -4,7 +4,7 @@ const commentRouter = express.Router();
 const app = express();
 
 
-commentRouter.get('/', commentController.getComment);
+commentRouter.get('/', commentController.getComments);
 commentRouter.get('/:id', commentController.getComment);
 commentRouter.post('/', commentController.postComment);
 commentRouter.put('/:id', commentController.putComment);

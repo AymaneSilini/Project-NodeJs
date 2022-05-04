@@ -1,6 +1,6 @@
 const Category = require('../models/category.model');
 
-function getCategory(req, res) {
+function getCategories(req, res) {
     Category.find()
     .then((result) => {
         res.send(result);
@@ -50,6 +50,6 @@ function deleteCategory (req, res) {
 }
 
 module.exports = {
-    getCategory, getCategory, postCategory,
+    getCategories, getCategory, postCategory,
     putCategory, deleteCategory
 }

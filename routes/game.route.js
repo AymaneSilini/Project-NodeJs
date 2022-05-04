@@ -4,7 +4,7 @@ const gameRouter = express.Router();
 const app = express();
 
 
-gameRouter.get('/', gameController.getGame);
+gameRouter.get('/', gameController.getGames);
 gameRouter.get('/:id', gameController.getGame);
 gameRouter.post('/', gameController.postGame);
 gameRouter.put('/:id', gameController.putGame);

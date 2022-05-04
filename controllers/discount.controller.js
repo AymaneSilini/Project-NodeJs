@@ -1,6 +1,6 @@
 const Discount = require('../models/discount.model');
 
-function getDiscount(req, res) {
+function getDiscounts(req, res) {
     Discount.find()
     .then((result) => {
         res.send(result);
@@ -51,6 +51,6 @@ function deleteDiscount (req, res) {
     }).catch((err) => {res.status(500).send(err)});
 }
 module.exports = {
-    getDiscount, getDiscount, postDiscount,
+    getDiscounts, getDiscount, postDiscount,
     putDiscount, deleteDiscount
 }

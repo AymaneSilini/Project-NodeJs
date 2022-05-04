@@ -1,6 +1,6 @@
 const Order = require('../models/order.model');
 
-function getOrder(req, res) {
+function getOrders(req, res) {
     Order.find()
     .then((result) => {
         res.send(result);
@@ -54,6 +54,6 @@ function deleteOrder (req, res) {
 }
 
 module.exports = {
-    getOrder, getOrder, postOrder,
+    getOrders, getOrder, postOrder,
     putOrder, deleteOrder
 }

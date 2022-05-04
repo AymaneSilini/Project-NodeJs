@@ -4,7 +4,7 @@ const userRouter = express.Router();
 const app = express();
 
 
-userRouter.get('/', userController.getUser);
+userRouter.get('/', userController.getUsers);
 userRouter.get('/:id', userController.getUser);
 userRouter.post('/', userController.postUser);
 userRouter.put('/:id', userController.putUser);

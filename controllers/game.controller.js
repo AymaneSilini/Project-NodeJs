@@ -1,6 +1,6 @@
 const Game = require('../models/game.model');
 
-function getGame(req, res) {
+function getGames(req, res) {
     Game.find()
     .then((result) => {
         res.send(result);
@@ -71,6 +71,6 @@ function deleteGame (req, res) {
 }
 
 module.exports = {
-    getGame, getGame, postGame,
+    getGames, getGame, postGame,
     putGame, deleteGame
 }
