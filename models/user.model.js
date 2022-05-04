@@ -15,7 +15,7 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type:String,
-    required: true
+    default:'user'
   },
   mail: {
     type:String,
@@ -25,6 +25,9 @@ const userSchema = mongoose.Schema({
     type:String,
     required: true
   },
+  token: {
+    type:String
+  }
 }, {timestamps: true});
 
 userSchema.plugin(AutoIncrement, {inc_field: 'userId'});

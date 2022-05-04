@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const app = express();
 const PORT = 3000;
 const DB_CONNECTION = 'mongodb+srv://edgar:Edgarmoises1@cluster0.uih0s.mongodb.net/nodeProyect?retryWrites=true&w=majority';
@@ -14,7 +15,7 @@ const orderRouter = require('./routes/order.route');
 const platformRouter = require('./routes/platform.route');
 const requirementsRouter = require('./routes/requirements.route');
 const userRouter = require('./routes/user.route');
-
+require("dotenv").config();
 app.use(cors({
     origin: '*'
 }));
