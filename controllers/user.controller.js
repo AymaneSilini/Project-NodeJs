@@ -10,6 +10,8 @@ function getUsers (req, res) {
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
+    //get the logged user from the token
+    console.log(req.user);
 }
 function getUser (req, res) {
     User.findOne({userId: req.params.id})
@@ -81,7 +83,7 @@ async function login (req, res){
     if (user && (await bcrypt.compare(password, user.password))) {
       // Create token
       const token = jwt.sign(
-        { user_id: user._id, mail },
+        { _id: user._id, mail, userIid: user.userId},
         process.env.TOKEN_KEY,
         {
           expiresIn: "2h",
@@ -140,7 +142,7 @@ async function register(req,res){
 
     // Create token
     const token = jwt.sign(
-      { user_id: user.id, mail },
+      { _id: user._id, mail, userIid: user.userId },
       process.env.TOKEN_KEY,
       {
         expiresIn: "2h",
