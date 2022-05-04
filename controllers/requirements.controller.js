@@ -7,7 +7,7 @@ function getRequirements(req, res) {
     }).catch((err) => {res.status(500).send(err)});
 }
 function getRequirement (req, res) {
-    Requirements.findOne({RequirementsId: req.params.id})
+    Requirements.findOne({requirementsId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -38,7 +38,7 @@ function putRequirements (req, res) {
     if (!req.body.OS) {
         return res.status(400).send('Missing Requirements\'s OS');
     }
-    Requirements.findOneAndUpdate({RequirementsId: req.params.id}, {
+    Requirements.findOneAndUpdate({requirementsId: req.params.id}, {
         OS: req.body.OS,
         processor: req.body.processor,
         memory: req.body.memory,
@@ -51,7 +51,7 @@ function putRequirements (req, res) {
     });
 }
 function deleteRequirements (req, res) {
-    Requirements.findOneAndDelete({RequirementsId: req.params.id})
+    Requirements.findOneAndDelete({requirementsId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});

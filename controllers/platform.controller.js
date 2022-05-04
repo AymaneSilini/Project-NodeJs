@@ -7,7 +7,7 @@ function getPlatforms(req, res) {
     }).catch((err) => {res.status(500).send(err)});
 }
 function getPlatform (req, res) {
-    Platform.findOne({PlatformId: req.params.id})
+    Platform.findOne({platformId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -34,7 +34,7 @@ function putPlatform (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Platform\'s name');
     }
-    Platform.findOneAndUpdate({PlatformId: req.params.id}, {
+    Platform.findOneAndUpdate({platformId: req.params.id}, {
         name: req.body.name,
     }).then((result) => {
         res.send(result);
@@ -43,7 +43,7 @@ function putPlatform (req, res) {
     });
 }
 function deletePlatform (req, res) {
-    Platform.findOneAndDelete({PlatformId: req.params.id})
+    Platform.findOneAndDelete({platformId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});

@@ -7,7 +7,7 @@ function getComments(req, res) {
     }).catch((err) => {res.status(500).send(err)});
 }
 function getComment (req, res) {
-    Comment.findOne({CommentId: req.params.id})
+    Comment.findOne({commentId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -37,7 +37,7 @@ function putComment (req, res) {
     if (!req.body.content) {
         return res.status(400).send('Missing Comment\'s content');
     }
-    Comment.findOneAndUpdate({CommentId: req.params.id}, {
+    Comment.findOneAndUpdate({commentId: req.params.id}, {
         content: req.body.content,
         date: req.body.date,
         user: req.body.user,
@@ -49,7 +49,7 @@ function putComment (req, res) {
     });
 }
 function deleteComment (req, res) {
-    Comment.findOneAndDelete({CommentId: req.params.id})
+    Comment.findOneAndDelete({commentId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});

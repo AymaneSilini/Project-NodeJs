@@ -7,7 +7,7 @@ function getUsers (req, res) {
     }).catch((err) => {res.status(500).send(err)});
 }
 function getUser (req, res) {
-    User.findOne({UserId: req.params.id})
+    User.findOne({userId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -39,7 +39,7 @@ function putUser (req, res) {
     if (!req.body.alias) {
         return res.status(400).send('Missing User\'s alias');
     }
-    User.findOneAndUpdate({UserId: req.params.id}, {
+    User.findOneAndUpdate({userId: req.params.id}, {
         name:req.body.name,
         lastName: req.body.lastName,
         firstname: req.body.firstname,
@@ -53,7 +53,7 @@ function putUser (req, res) {
     });
 }
 function deleteUser (req, res) {
-    User.findOneAndDelete({UserId: req.params.id})
+    User.findOneAndDelete({userId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});

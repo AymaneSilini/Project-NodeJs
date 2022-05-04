@@ -7,7 +7,7 @@ function getOrders(req, res) {
     }).catch((err) => {res.status(500).send(err)});
 }
 function getOrder (req, res) {
-    Order.findOne({OrderId: req.params.id})
+    Order.findOne({orderId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -36,7 +36,7 @@ function putOrder (req, res) {
     if (!req.body.address) {
         return res.status(400).send('Missing Order\'s address');
     }
-    Order.findOneAndUpdate({OrderId: req.params.id}, {
+    Order.findOneAndUpdate({orderId: req.params.id}, {
         address: req.body.address,
         date: req.body.date,
         user: req.body.user,
@@ -47,7 +47,7 @@ function putOrder (req, res) {
     });
 }
 function deleteOrder (req, res) {
-    Order.findOneAndDelete({OrderId: req.params.id})
+    Order.findOneAndDelete({orderId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});

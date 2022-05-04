@@ -7,7 +7,7 @@ function getDiscounts(req, res) {
     }).catch((err) => {res.status(500).send(err)});
 }
 function getDiscount (req, res) {
-    Discount.findOne({DiscountId: req.params.id})
+    Discount.findOne({discountId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -35,7 +35,7 @@ function putDiscount (req, res) {
     if (!req.body.price) {
         return res.status(400).send('Missing Discount\'s price');
     }
-    Discount.findOneAndUpdate({DiscountId: req.params.id}, {
+    Discount.findOneAndUpdate({discountId: req.params.id}, {
         price: req.body.price,
         date: req.body.date,
     }).then((result) => {
@@ -45,7 +45,7 @@ function putDiscount (req, res) {
     });
 }
 function deleteDiscount (req, res) {
-    Discount.findOneAndDelete({DiscountId: req.params.id})
+    Discount.findOneAndDelete({discountId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
