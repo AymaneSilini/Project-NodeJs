@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+var nodemailer = require('nodemailer');
 
 function getUsers (req, res) {
     User.find()
@@ -147,6 +148,31 @@ async function register(req,res){
     user.token = token;
 
     user.save();
+
+
+    //emailer 
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'nodejstestlp@gmail.com',
+          pass: 'nodejstestlp38'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'nodejstestlp@gmail.com',
+        to: user.mail,
+        subject: 'Sending Email using Node.js because you register',
+        text: 'That was easy!'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 
     // return new user
     res.status(201).json(user);
