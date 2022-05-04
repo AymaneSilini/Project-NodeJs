@@ -28,7 +28,13 @@ mongoose.connect(DB_CONNECTION)
 }))
 .catch((err)=> console.log(err));
 
+app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname+'/views'));
 
+//Routes
+app.get('/', function(req, res) {
+    res.render('home');
+});
 app.use('/category', categoryRouter);
 app.use('/comment', commentRouter);
 app.use('/discount', discountRouter);
