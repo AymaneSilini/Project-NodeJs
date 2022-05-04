@@ -1,13 +1,13 @@
 const Comment = require('../models/comment.model');
 
-function getComment(req, res) {
+function getComments(req, res) {
     Comment.find()
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 function getComment (req, res) {
-    Comment.findOne({CommentId: req.params.id})
+    Comment.findOne({commentId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -20,13 +20,13 @@ function postComment (req, res) {
     if (!req.body.content) {
         return res.status(400).send('Missing Comment\'s content');
     }
-    const Comment = new Comment({
+    const comment = new Comment({
         content: req.body.content,
         date: req.body.date,
         user: req.body.user,
         game: req.body.game,
     });
-    Comment.save()
+    comment.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {
@@ -37,7 +37,7 @@ function putComment (req, res) {
     if (!req.body.content) {
         return res.status(400).send('Missing Comment\'s content');
     }
-    Comment.findOneAndUpdate({CommentId: req.params.id}, {
+    Comment.findOneAndUpdate({commentId: req.params.id}, {
         content: req.body.content,
         date: req.body.date,
         user: req.body.user,
@@ -49,13 +49,13 @@ function putComment (req, res) {
     });
 }
 function deleteComment (req, res) {
-    Comment.findOneAndDelete({CommentId: req.params.id})
+    Comment.findOneAndDelete({commentId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 
 module.exports = {
-    getComment, getComment, postComment,
+    getComments, getComment, postComment,
     putComment, deleteComment
 }

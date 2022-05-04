@@ -6,8 +6,8 @@ function getRequirements(req, res) {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
-function getRequirements (req, res) {
-    Requirements.findOne({RequirementsId: req.params.id})
+function getRequirement (req, res) {
+    Requirements.findOne({requirementsId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -20,14 +20,14 @@ function postRequirements (req, res) {
     if (!req.body.OS) {
         return res.status(400).send('Missing Requirements\'s OS');
     }
-    const Requirements = new Requirements({
+    const requirements = new Requirements({
         OS: req.body.OS,
         processor: req.body.processor,
         memory: req.body.memory,
         graphics: req.body.graphics,
         storage: req.body.storage,
     });
-    Requirements.save()
+    requirements.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {
@@ -38,7 +38,7 @@ function putRequirements (req, res) {
     if (!req.body.OS) {
         return res.status(400).send('Missing Requirements\'s OS');
     }
-    Requirements.findOneAndUpdate({RequirementsId: req.params.id}, {
+    Requirements.findOneAndUpdate({requirementsId: req.params.id}, {
         OS: req.body.OS,
         processor: req.body.processor,
         memory: req.body.memory,
@@ -51,13 +51,13 @@ function putRequirements (req, res) {
     });
 }
 function deleteRequirements (req, res) {
-    Requirements.findOneAndDelete({RequirementsId: req.params.id})
+    Requirements.findOneAndDelete({requirementsId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 
 module.exports = {
-    getRequirements, getRequirements, postRequirements,
+    getRequirements, getRequirement, postRequirements,
     putRequirements, deleteRequirements
 }

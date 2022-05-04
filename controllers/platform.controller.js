@@ -1,13 +1,13 @@
 const Platform = require('../models/platform.model');
 
-function getPlatform(req, res) {
+function getPlatforms(req, res) {
     Platform.find()
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 function getPlatform (req, res) {
-    Platform.findOne({PlatformId: req.params.id})
+    Platform.findOne({platformId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -20,10 +20,10 @@ function postPlatform (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Platform\'s name');
     }
-    const Platform = new Platform({
+    const platform = new Platform({
         name: req.body.name,
     });
-    Platform.save()
+    platform.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {
@@ -34,7 +34,7 @@ function putPlatform (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Platform\'s name');
     }
-    Platform.findOneAndUpdate({PlatformId: req.params.id}, {
+    Platform.findOneAndUpdate({platformId: req.params.id}, {
         name: req.body.name,
     }).then((result) => {
         res.send(result);
@@ -43,13 +43,13 @@ function putPlatform (req, res) {
     });
 }
 function deletePlatform (req, res) {
-    Platform.findOneAndDelete({PlatformId: req.params.id})
+    Platform.findOneAndDelete({platformId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 
 module.exports = {
-    getPlatform, getPlatform, postPlatform,
+    getPlatforms, getPlatform, postPlatform,
     putPlatform, deletePlatform
 }

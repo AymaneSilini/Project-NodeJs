@@ -4,7 +4,7 @@ const categoryRouter = express.Router();
 const app = express();
 
 
-categoryRouter.get('/', categoryController.getCategory);
+categoryRouter.get('/', categoryController.getCategories);
 categoryRouter.get('/:id', categoryController.getCategory);
 categoryRouter.post('/', categoryController.postCategory);
 categoryRouter.put('/:id', categoryController.putCategory);

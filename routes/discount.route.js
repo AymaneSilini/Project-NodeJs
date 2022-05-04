@@ -4,7 +4,7 @@ const discountRouter = express.Router();
 const app = express();
 
 
-discountRouter.get('/', discountController.getDiscount);
+discountRouter.get('/', discountController.getDiscounts);
 discountRouter.get('/:id', discountController.getDiscount);
 discountRouter.post('/', discountController.postDiscount);
 discountRouter.put('/:id', discountController.putDiscount);

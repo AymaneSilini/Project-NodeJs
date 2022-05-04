@@ -1,13 +1,13 @@
 const Category = require('../models/category.model');
 
-function getCategory(req, res) {
+function getCategories(req, res) {
     Category.find()
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 function getCategory (req, res) {
-    Category.findOne({CategoryId: req.params.id})
+    Category.findOne({categoryId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -20,10 +20,10 @@ function postCategory (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Category\'s name');
     }
-    const Category = new Category({
+    const category = new Category({
         name: req.body.name,
     });
-    Category.save()
+    category.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {
@@ -34,7 +34,7 @@ function putCategory (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Category\'s name');
     }
-    Category.findOneAndUpdate({CategoryId: req.params.id}, {
+    Category.findOneAndUpdate({categoryId: req.params.id}, {
         name: req.body.name,
     }).then((result) => {
         res.send(result);
@@ -43,13 +43,13 @@ function putCategory (req, res) {
     });
 }
 function deleteCategory (req, res) {
-    Category.findOneAndDelete({CategoryId: req.params.id})
+    Category.findOneAndDelete({categoryId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 
 module.exports = {
-    getCategory, getCategory, postCategory,
+    getCategories, getCategory, postCategory,
     putCategory, deleteCategory
 }

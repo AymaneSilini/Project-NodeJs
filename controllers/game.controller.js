@@ -1,13 +1,13 @@
 const Game = require('../models/game.model');
 
-function getGame(req, res) {
+function getGames(req, res) {
     Game.find()
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 function getGame (req, res) {
-    Game.findOne({GameId: req.params.id})
+    Game.findOne({gameId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -20,7 +20,7 @@ function postGame (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Game\'s name');
     }
-    const Game = new Game({
+    const game = new Game({
         name: req.body.name,
         date: req.body.date,
         photo: req.body.photo,
@@ -34,7 +34,7 @@ function postGame (req, res) {
         discount: req.body.discount,
 
     });
-    Game.save()
+    game.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {
@@ -45,7 +45,7 @@ function putGame (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Game\'s name');
     }
-    Game.findOneAndUpdate({GameId: req.params.id}, {
+    Game.findOneAndUpdate({gameId: req.params.id}, {
         name: req.body.name,
         date: req.body.date,
         photo: req.body.photo,
@@ -64,13 +64,13 @@ function putGame (req, res) {
     });
 }
 function deleteGame (req, res) {
-    Game.findOneAndDelete({GameId: req.params.id})
+    Game.findOneAndDelete({gameId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 
 module.exports = {
-    getGame, getGame, postGame,
+    getGames, getGame, postGame,
     putGame, deleteGame
 }

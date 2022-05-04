@@ -1,13 +1,13 @@
 const OrderLine = require('../models/order-line.model');
 
-function getOrderLine(req, res) {
+function getOrderLines(req, res) {
     OrderLine.find()
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 function getOrderLine (req, res) {
-    OrderLine.findOne({OrderLineId: req.params.id})
+    OrderLine.findOne({orderLineId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -20,13 +20,13 @@ function postOrderLine (req, res) {
     if (!req.body.order) {
         return res.status(400).send('Missing OrderLine\'s order');
     }
-    const OrderLine = new OrderLine({
+    const orderLine = new OrderLine({
         price: req.body.price,
         date: req.body.date,
         order: req.body.order,
         game: req.body.game,
     });
-    OrderLine.save()
+    orderLine.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {
@@ -37,7 +37,7 @@ function putOrderLine (req, res) {
     if (!req.body.order) {
         return res.status(400).send('Missing OrderLine\'s order');
     }
-    OrderLine.findOneAndUpdate({OrderLineId: req.params.id}, {
+    OrderLine.findOneAndUpdate({orderLineId: req.params.id}, {
         price: req.body.price,
         date: req.body.date,
         order: req.body.order,
@@ -49,13 +49,13 @@ function putOrderLine (req, res) {
     });
 }
 function deleteOrderLine (req, res) {
-    OrderLine.findOneAndDelete({OrderLineId: req.params.id})
+    OrderLine.findOneAndDelete({orderLineId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 
 module.exports = {
-    getOrderLine, getOrderLine, postOrderLine,
+    getOrderLines, getOrderLine, postOrderLine,
     putOrderLine, deleteOrderLine
 }

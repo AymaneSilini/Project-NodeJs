@@ -1,13 +1,13 @@
 const Discount = require('../models/discount.model');
 
-function getDiscount(req, res) {
+function getDiscounts(req, res) {
     Discount.find()
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 function getDiscount (req, res) {
-    Discount.findOne({DiscountId: req.params.id})
+    Discount.findOne({discountId: req.params.id})
     .then((result) =>{
         if (result) {
             res.send(result)
@@ -20,11 +20,11 @@ function postDiscount (req, res) {
     if (!req.body.price) {
         return res.status(400).send('Missing Discount\'s price');
     }
-    const Discount = new Discount({
+    const discount = new Discount({
         price: req.body.price,
         date: req.body.date,
     });
-    Discount.save()
+    discount.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {
@@ -35,7 +35,7 @@ function putDiscount (req, res) {
     if (!req.body.price) {
         return res.status(400).send('Missing Discount\'s price');
     }
-    Discount.findOneAndUpdate({DiscountId: req.params.id}, {
+    Discount.findOneAndUpdate({discountId: req.params.id}, {
         price: req.body.price,
         date: req.body.date,
     }).then((result) => {
@@ -45,12 +45,12 @@ function putDiscount (req, res) {
     });
 }
 function deleteDiscount (req, res) {
-    Discount.findOneAndDelete({DiscountId: req.params.id})
+    Discount.findOneAndDelete({discountId: req.params.id})
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
 }
 module.exports = {
-    getDiscount, getDiscount, postDiscount,
+    getDiscounts, getDiscount, postDiscount,
     putDiscount, deleteDiscount
 }
