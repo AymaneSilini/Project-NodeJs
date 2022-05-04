@@ -3,8 +3,6 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const app = express();
-const PORT = 3000;
-const DB_CONNECTION = 'mongodb+srv://edgar:Edgarmoises1@cluster0.uih0s.mongodb.net/nodeProyect?retryWrites=true&w=majority';
 const categoryRouter = require('./routes/category.route');
 const commentRouter = require('./routes/comment.route');
 const discountRouter = require('./routes/discount.route');
@@ -14,17 +12,17 @@ const orderRouter = require('./routes/order.route');
 const platformRouter = require('./routes/platform.route');
 const requirementsRouter = require('./routes/requirements.route');
 const userRouter = require('./routes/user.route');
-
+require("dotenv").config();
 app.use(cors({
     origin: '*'
 }));
 
 app.use(express.json());
 
-mongoose.connect(DB_CONNECTION)
+mongoose.connect(process.env.DB_CONNECTION)
 .then(()=>console.log("connexion ok to database"))
-.then(app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+.then(app.listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}`);
 }))
 .catch((err)=> console.log(err));
 
