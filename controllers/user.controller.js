@@ -20,7 +20,7 @@ function postUser (req, res) {
     if (!req.body.alias) {
         return res.status(400).send('Missing User\'s alias');
     }
-    const User = new User({
+    const user = new User({
         alias:req.body.alias,
         lastName: req.body.lastName,
         firstname: req.body.firstname,
@@ -28,7 +28,7 @@ function postUser (req, res) {
         password: req.body.password,
         mail: req.body.mail
     });
-    User.save()
+    user.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

@@ -3,7 +3,8 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const app = express();
-
+const PORT = 3000;
+const DB_CONNECTION = 'mongodb+srv://edgar:Edgarmoises1@cluster0.uih0s.mongodb.net/nodeProyect?retryWrites=true&w=majority';
 const categoryRouter = require('./routes/category.route');
 const commentRouter = require('./routes/comment.route');
 const discountRouter = require('./routes/discount.route');
@@ -20,10 +21,10 @@ app.use(cors({
 
 app.use(express.json());
 
-mongoose.connect(process.env.DB_CONNECTION)
+mongoose.connect(DB_CONNECTION)
 .then(()=>console.log("connexion ok to database"))
-.then(app.listen(process.env.PORT, () => {
-    console.log(`Listening on port ${process.env.PORT}`);
+.then(app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
 }))
 .catch((err)=> console.log(err));
 

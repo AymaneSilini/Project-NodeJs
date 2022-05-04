@@ -20,10 +20,10 @@ function postCategory (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Category\'s name');
     }
-    const Category = new Category({
+    const category = new Category({
         name: req.body.name,
     });
-    Category.save()
+    category.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

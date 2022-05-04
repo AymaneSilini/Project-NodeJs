@@ -20,10 +20,10 @@ function postPlatform (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Platform\'s name');
     }
-    const Platform = new Platform({
+    const platform = new Platform({
         name: req.body.name,
     });
-    Platform.save()
+    platform.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

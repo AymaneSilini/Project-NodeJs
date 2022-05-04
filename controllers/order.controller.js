@@ -20,12 +20,12 @@ function postOrder (req, res) {
     if (!req.body.address) {
         return res.status(400).send('Missing Order\'s address');
     }
-    const Order = new Order({
+    const order = new Order({
         address: req.body.address,
         date: req.body.date,
         user: req.body.user,
     });
-    Order.save()
+    order.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

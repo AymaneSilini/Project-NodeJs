@@ -20,13 +20,13 @@ function postComment (req, res) {
     if (!req.body.content) {
         return res.status(400).send('Missing Comment\'s content');
     }
-    const Comment = new Comment({
+    const comment = new Comment({
         content: req.body.content,
         date: req.body.date,
         user: req.body.user,
         game: req.body.game,
     });
-    Comment.save()
+    comment.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

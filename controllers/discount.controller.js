@@ -20,11 +20,11 @@ function postDiscount (req, res) {
     if (!req.body.price) {
         return res.status(400).send('Missing Discount\'s price');
     }
-    const Discount = new Discount({
+    const discount = new Discount({
         price: req.body.price,
         date: req.body.date,
     });
-    Discount.save()
+    discount.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

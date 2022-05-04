@@ -20,7 +20,7 @@ function postGame (req, res) {
     if (!req.body.name) {
         return res.status(400).send('Missing Game\'s name');
     }
-    const Game = new Game({
+    const game = new Game({
         name: req.body.name,
         date: req.body.date,
         photo: req.body.photo,
@@ -34,7 +34,7 @@ function postGame (req, res) {
         discount: req.body.discount,
 
     });
-    Game.save()
+    game.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

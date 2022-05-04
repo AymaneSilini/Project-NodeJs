@@ -20,13 +20,13 @@ function postOrderLine (req, res) {
     if (!req.body.order) {
         return res.status(400).send('Missing OrderLine\'s order');
     }
-    const OrderLine = new OrderLine({
+    const orderLine = new OrderLine({
         price: req.body.price,
         date: req.body.date,
         order: req.body.order,
         game: req.body.game,
     });
-    OrderLine.save()
+    orderLine.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

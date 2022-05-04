@@ -20,14 +20,14 @@ function postRequirements (req, res) {
     if (!req.body.OS) {
         return res.status(400).send('Missing Requirements\'s OS');
     }
-    const Requirements = new Requirements({
+    const requirements = new Requirements({
         OS: req.body.OS,
         processor: req.body.processor,
         memory: req.body.memory,
         graphics: req.body.graphics,
         storage: req.body.storage,
     });
-    Requirements.save()
+    requirements.save()
     .then((result) => {
         res.send(result);
     }).catch((err) => {

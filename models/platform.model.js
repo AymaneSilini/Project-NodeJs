@@ -8,8 +8,7 @@ const platformSchema = mongoose.Schema({
   }
 }, {timestamps: true});
 
+
 platformSchema.plugin(AutoIncrement, {inc_field: 'platformId'});
-
-
 const Platform = mongoose.model('Platform', platformSchema);
 module.exports = Platform;
