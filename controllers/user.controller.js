@@ -162,8 +162,8 @@ async function register(req,res){
       var mailOptions = {
         from: 'nodejstestlp@gmail.com',
         to: user.mail,
-        subject: 'Sending Email using Node.js because you register',
-        text: 'That was easy!'
+        subject: 'Registration email',
+        text: 'GG ' + user.alias + ', your account have been successfully created with this email : ' + user.mail
       };
       
       transporter.sendMail(mailOptions, function(error, info){
