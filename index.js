@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+
 const app = express();
 const categoryRouter = require('./routes/category.route');
 const commentRouter = require('./routes/comment.route');
