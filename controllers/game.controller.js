@@ -1,5 +1,6 @@
 const Category = require('../models/category.model');
 const Game = require('../models/game.model');
+const Platform = require('../models/platform.model');
 
 function getGames(req, res) {
     Game.find()
@@ -81,11 +82,18 @@ function getGameByName(req,res){
 }
 
 function getGameByPlatform(req,res){
-    Game.find({ platform:req.params.platform})
-    .then((result) => {
-        if (result) {
-            res.send(result)
-        } else {res.status(400).send(`Game platform ${req.params.platform} does not exist`)}
+    Platform.find({name:req.params.platform})
+    .then((result)=> {
+        if (result){
+            var plat = result[0]._id;
+            Game.find({ platform:plat})
+            .then((result) => {
+                if (result) {
+                    res.send(result)
+                } else {res.status(400).send(`Game platform ${req.params.platform} does not exist`)}
+            }).catch((err) => {res.status(500).send(err)});
+        }
+        else {res.status(400).send(`No game correspond to ${req.params.platform} platform`)}
     }).catch((err) => {res.status(500).send(err)});
 }
 
@@ -93,18 +101,18 @@ function getGameByCategory(req,res){
     Category.find({name:req.params.category})
     .then((result)=> {
         if (result){
-            console.log(result);
-            cons
+            var cate = result[0]._id;
+            Game.find({ category:cate})
+            .then((result) => {
+                if (result) {
+                    res.send(result)
+                } else {res.status(400).send(`Game category ${req.params.category} does not exist`)}
+            }).catch((err) => {res.status(500).send(err)});
         }
-        else {res.status(400).send(`Game category ${req.params.category} does not exist`)}
+        else {res.status(400).send(`No game correspond to ${req.params.category} category`)}
     }).catch((err) => {res.status(500).send(err)});
     
-    Game.find({ category:result})
-    .then((result) => {
-        if (result) {
-            res.send(result)
-        } else {res.status(400).send(`Game category ${req.params.category} does not exist`)}
-    }).catch((err) => {res.status(500).send(err)});
+    
 }
 
 
