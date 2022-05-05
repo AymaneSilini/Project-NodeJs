@@ -6,7 +6,7 @@ const platformSchema = mongoose.Schema({
     type: String,
     required: true
   }
-}, {timestamps: true});
+}, {timestamps: false});
 
 
 platformSchema.plugin(AutoIncrement, {inc_field: 'platformId'});

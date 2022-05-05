@@ -2,9 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
-const PDFDocument = require('pdfkit');
-const fs = require('fs');
-
 const app = express();
 const categoryRouter = require('./routes/category.route');
 const commentRouter = require('./routes/comment.route');
@@ -15,7 +12,10 @@ const orderRouter = require('./routes/order.route');
 const platformRouter = require('./routes/platform.route');
 const requirementsRouter = require('./routes/requirements.route');
 const userRouter = require('./routes/user.route');
+app.use(express.static(__dirname + '/public'));
 require("dotenv").config();
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(cors({
     origin: '*'
 }));
@@ -30,6 +30,7 @@ mongoose.connect(process.env.DB_CONNECTION)
 .catch((err)=> console.log(err));
 
 
+
 app.use('/category', categoryRouter);
 app.use('/comment', commentRouter);
 app.use('/discount', discountRouter);
@@ -39,3 +40,8 @@ app.use('/order', orderRouter);
 app.use('/platform', platformRouter);
 app.use('/requirements', requirementsRouter);
 app.use('/user', userRouter);
+
+app.get('/', (req, res) => {
+    res.render('index', {title: 'Welcome to website for planets and heroes'});
+});
+

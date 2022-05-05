@@ -6,7 +6,7 @@ const categorySchema = mongoose.Schema({
     type: String,
     required: true
   }
-}, {timestamps: true});
+}, {timestamps: false});
 
 categorySchema.plugin(AutoIncrement, {inc_field: 'categoryId'});
 

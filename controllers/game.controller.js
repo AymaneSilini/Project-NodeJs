@@ -1,3 +1,4 @@
+const Category = require('../models/category.model');
 const Game = require('../models/game.model');
 
 function getGames(req, res) {
@@ -70,7 +71,45 @@ function deleteGame (req, res) {
     }).catch((err) => {res.status(500).send(err)});
 }
 
+function getGameByName(req,res){
+    Game.find({ name:req.params.name})
+    .then((result) => {
+        if (result) {
+            res.send(result)
+        } else {res.status(400).send(`Game name ${req.params.name} does not exist`)}
+    }).catch((err) => {res.status(500).send(err)});
+}
+
+function getGameByPlatform(req,res){
+    Game.find({ platform:req.params.platform})
+    .then((result) => {
+        if (result) {
+            res.send(result)
+        } else {res.status(400).send(`Game platform ${req.params.platform} does not exist`)}
+    }).catch((err) => {res.status(500).send(err)});
+}
+
+function getGameByCategory(req,res){
+    Category.find({name:req.params.category})
+    .then((result)=> {
+        if (result){
+            console.log(result);
+            cons
+        }
+        else {res.status(400).send(`Game category ${req.params.category} does not exist`)}
+    }).catch((err) => {res.status(500).send(err)});
+    
+    Game.find({ category:result})
+    .then((result) => {
+        if (result) {
+            res.send(result)
+        } else {res.status(400).send(`Game category ${req.params.category} does not exist`)}
+    }).catch((err) => {res.status(500).send(err)});
+}
+
+
+
 module.exports = {
     getGames, getGame, postGame,
-    putGame, deleteGame
+    putGame, deleteGame, getGameByName, getGameByPlatform, getGameByCategory
 }

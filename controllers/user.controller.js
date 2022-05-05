@@ -29,7 +29,7 @@ function postUser (req, res) {
     }
     const user = new User({
         alias:req.body.alias,
-        lastName: req.body.lastName,
+        lastname: req.body.lastname,
         firstname: req.body.firstname,
         alias : req.body.alias,
         password: req.body.password,
@@ -48,7 +48,7 @@ function putUser (req, res) {
     }
     User.findOneAndUpdate({userId: req.params.id}, {
         name:req.body.name,
-        lastName: req.body.lastName,
+        lastname: req.body.lastname,
         firstname: req.body.firstname,
         alias : req.body.alias,
         password: req.body.password,
@@ -94,6 +94,7 @@ async function login (req, res){
       user.save();
       // user
       res.status(200).json(user);
+      res.send(`mail: ${mail} password: ${password}`);
     }
     else {
         res.status(400).send("Invalid Credentials");
@@ -113,10 +114,10 @@ async function register(req,res){
     // Our register logic starts here
   try {
     // Get user input
-    const { alias, firstname, lastName, mail, password } = req.body;
+    const { alias, firstname, lastname, mail, password } = req.body;
 
     // Validate user input
-    if (!(mail && password && firstname && lastName && alias)) {
+    if (!(mail && password && firstname && lastname && alias)) {
       res.status(400).send("All input is required");
     }
 
@@ -134,7 +135,7 @@ async function register(req,res){
     // Create user in our database
     const user = await User.create({
         firstname,
-        lastName,
+        lastname,
         alias,
         mail: mail.toLowerCase(), // sanitize: convert email to lowercase
         password: encryptedPassword,

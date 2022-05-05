@@ -19,7 +19,7 @@ const commentSchema = Schema({
     type: Schema.ObjectId, ref: "Game",
   required: true
  },
-}, {timestamps: true});
+}, {timestamps: false});
 
 commentSchema.plugin(AutoIncrement, {inc_field: 'commentId'});
 

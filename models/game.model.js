@@ -35,7 +35,7 @@ const gameSchema = Schema({
     type: Schema.ObjectId, ref: "Platform" ,
     required: true
   },
-  requiremens: { 
+  requirements: { 
     type: Schema.ObjectId, ref: "Requirements" ,
     required: true
   },
@@ -44,7 +44,7 @@ const gameSchema = Schema({
     required: true
   },
 
-}, {timestamps: true});
+}, {timestamps: false});
 
 gameSchema.plugin(AutoIncrement, {inc_field: 'gameId'});
 

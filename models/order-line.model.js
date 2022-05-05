@@ -15,7 +15,7 @@ const orderLineSchema = Schema({
     type: Schema.ObjectId, ref: "Game" ,
     required: true
   },
-}, {timestamps: true});
+}, {timestamps: false});
 
 orderLineSchema.plugin(AutoIncrement, {inc_field: 'orderLineId'});
 
