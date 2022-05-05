@@ -20,7 +20,7 @@ app.use(cors({
 app.use(express.json());
 
 mongoose.connect(process.env.DB_CONNECTION)
-.then(()=>console.log("connexion ok to database"))
+.then(()=>console.log("Connected to database"))
 .then(app.listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}`);
 }))
@@ -30,9 +30,18 @@ app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname+'/views'));
 
 //Routes
+const gameController = require('./controllers/game.controller');
+
 app.get('/', function(req, res) {
-    res.render('home');
+    res.render('home', {gamesData: gameController.getGames()});
 });
+
+//React
+app.post("/post", (req, res) => {
+    console.log("Connected to React");
+    res.redirect("/");
+  });
+
 app.use('/category', categoryRouter);
 app.use('/comment', commentRouter);
 app.use('/discount', discountRouter);
