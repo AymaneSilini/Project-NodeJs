@@ -3,7 +3,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const userSchema = mongoose.Schema({
   alias: {
     type:String,
-    required: true
+    required: true,
   },
   lastname: {
     type:String,
