@@ -12,7 +12,10 @@ const orderRouter = require('./routes/order.route');
 const platformRouter = require('./routes/platform.route');
 const requirementsRouter = require('./routes/requirements.route');
 const userRouter = require('./routes/user.route');
+app.use(express.static(__dirname + '/public'));
 require("dotenv").config();
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(cors({
     origin: '*'
 }));
@@ -42,6 +45,7 @@ app.post("/post", (req, res) => {
     res.redirect("/");
   });
 
+
 app.use('/category', categoryRouter);
 app.use('/comment', commentRouter);
 app.use('/discount', discountRouter);
@@ -51,3 +55,8 @@ app.use('/order', orderRouter);
 app.use('/platform', platformRouter);
 app.use('/requirements', requirementsRouter);
 app.use('/user', userRouter);
+
+app.get('/', (req, res) => {
+    res.render('index', {title: 'Welcome to website for planets and heroes'});
+});
+

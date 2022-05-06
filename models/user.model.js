@@ -6,7 +6,7 @@ const userSchema = Schema({
     type:String,
     required: true
   },
-  lastName: {
+  lastname: {
     type:String,
     required: true
   },
@@ -29,7 +29,7 @@ const userSchema = Schema({
   token: {
     type:String
   }
-}, {timestamps: true});
+}, {timestamps: false});
 
 userSchema.plugin(AutoIncrement, {inc_field: 'userId'});
 const User = mongoose.model('User', userSchema);

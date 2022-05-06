@@ -28,23 +28,23 @@ const gameSchema = Schema({
     required: true
   },
   category: { 
-    type: Schema.ObjectId, ref: "Category" ,
+    type: Number, ref: "Category" ,
     required: true
   },
   platform: { 
-    type: Schema.ObjectId, ref: "Platform" ,
+    type: Number, ref: "Platform" ,
     required: true
   },
-  requiremens: { 
-    type: Schema.ObjectId, ref: "Requirements" ,
+  requirements: { 
+    type: Number, ref: "Requirements" ,
     required: true
   },
   discount: { 
-    type: Schema.ObjectId, ref: "Discount" ,
+    type: Number, ref: "Discount" ,
     required: true
   },
 
-}, {timestamps: true});
+}, {timestamps: false});
 
 gameSchema.plugin(AutoIncrement, {inc_field: 'gameId'});
 

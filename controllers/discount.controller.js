@@ -22,7 +22,9 @@ function postDiscount (req, res) {
     }
     const discount = new Discount({
         price: req.body.price,
-        date: req.body.date,
+        start: req.body.start,
+        end: req.body.end,
+
     });
     discount.save()
     .then((result) => {
@@ -37,7 +39,8 @@ function putDiscount (req, res) {
     }
     Discount.findOneAndUpdate({discountId: req.params.id}, {
         price: req.body.price,
-        date: req.body.date,
+        start: req.body.start,
+        end: req.body.end,
     }).then((result) => {
         res.send(result);
     }).catch((err) => {

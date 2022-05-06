@@ -11,7 +11,7 @@ const orderSchema = Schema({
     type: Schema.ObjectId, ref: "User" ,
     required: true
   },
-}, {timestamps: true});
+}, {timestamps: false});
 
 orderSchema.plugin(AutoIncrement, {inc_field: 'orderId'});
 

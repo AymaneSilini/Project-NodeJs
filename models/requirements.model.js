@@ -24,7 +24,7 @@ const requirementsSchema = Schema({
         type: String, 
         required: true
     },
-}, {timestamps: true});
+}, {timestamps: false});
 
 requirementsSchema.plugin(AutoIncrement, {inc_field: 'requirementsId'});
 
