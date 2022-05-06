@@ -86,7 +86,7 @@ function getGameByPlatform(req,res){
     Platform.find({name:req.params.platform})
     .then((result)=> {
         if (result){
-            var plat = result[0]._id;
+            var plat = result[0].platformId;
             Game.find({ platform:plat})
             .then((result) => {
                 if (result) {
@@ -102,7 +102,7 @@ function getGameByCategory(req,res){
     Category.find({name:req.params.category})
     .then((result)=> {
         if (result){
-            var cate = result[0]._id;
+            var cate = result[0].categoryId;
             Game.find({ category:cate})
             .then((result) => {
                 if (result) {
