@@ -28,19 +28,19 @@ const gameSchema = Schema({
     required: true
   },
   category: { 
-    type: Schema.ObjectId, ref: "Category" ,
+    type: Number, ref: "Category" ,
     required: true
   },
   platform: { 
-    type: Schema.ObjectId, ref: "Platform" ,
+    type: Number, ref: "Platform" ,
     required: true
   },
   requirements: { 
-    type: Schema.ObjectId, ref: "Requirements" ,
+    type: Number, ref: "Requirements" ,
     required: true
   },
   discount: { 
-    type: Schema.ObjectId, ref: "Discount" ,
+    type: Number, ref: "Discount" ,
     required: true
   },
 
