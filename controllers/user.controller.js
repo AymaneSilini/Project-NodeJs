@@ -33,7 +33,6 @@ function postUser (req, res) {
         alias:req.body.alias,
         lastname: req.body.lastname,
         firstname: req.body.firstname,
-        alias : req.body.alias,
         password: req.body.password,
         mail: req.body.mail
     });
