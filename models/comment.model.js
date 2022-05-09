@@ -6,14 +6,14 @@ const commentSchema = Schema({
 
   date: {
     type: Date, 
-    required: true
+    required: false
   },
   content:{
     type: String,
     required: true
   },
-  user: { 
-    type: Number, ref: "User",
+  pseudo: { 
+    type: String,
     required: true
    },
   game: { 
