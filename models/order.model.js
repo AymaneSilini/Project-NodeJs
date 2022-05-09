@@ -3,15 +3,19 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 var Schema = mongoose.Schema;
 
 const orderSchema = Schema({
-  address: {
-    type: String,
+  total: {
+    type: Number,
     required: true
   },
   user: { 
-    type: Schema.ObjectId, ref: "User" ,
+    type: Number, ref: "User" ,
     required: true
   },
-}, {timestamps: false});
+  games: { 
+    type: [String], ref: "Games" ,
+    required: false
+  },
+}, {timestamps: true});
 
 orderSchema.plugin(AutoIncrement, {inc_field: 'orderId'});
 

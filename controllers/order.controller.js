@@ -17,13 +17,13 @@ function getOrder (req, res) {
 }
 
 function postOrder (req, res) {
-    if (!req.body.address) {
-        return res.status(400).send('Missing Order\'s address');
-    }
+    // if (!req.body.address) {
+    //     return res.status(400).send('Missing Order\'s address');
+    // }
     const order = new Order({
-        address: req.body.address,
-        date: req.body.date,
+        total: req.body.total,
         user: req.body.user,
+        games: req.body.games,
     });
     order.save()
     .then((result) => {
@@ -33,9 +33,9 @@ function postOrder (req, res) {
     });
 }
 function putOrder (req, res) {
-    if (!req.body.address) {
-        return res.status(400).send('Missing Order\'s address');
-    }
+    // if (!req.body.address) {
+    //     return res.status(400).send('Missing Order\'s address');
+    // }
     Order.findOneAndUpdate({orderId: req.params.id}, {
         address: req.body.address,
         date: req.body.date,
