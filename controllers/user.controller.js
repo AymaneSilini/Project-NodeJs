@@ -2,8 +2,10 @@ const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 var nodemailer = require('nodemailer');
+const QRCode = require('qrcode')
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
+
 
 function getUsers (req, res) {
     User.find()
@@ -31,7 +33,6 @@ function postUser (req, res) {
         alias:req.body.alias,
         lastname: req.body.lastname,
         firstname: req.body.firstname,
-        alias : req.body.alias,
         password: req.body.password,
         mail: req.body.mail
     });
@@ -106,9 +107,6 @@ async function login (req, res){
 
 
 
-
-
-
 async function register(req,res){
 
     // Our register logic starts here
@@ -123,10 +121,15 @@ async function register(req,res){
 
     // check if user already exist
     // Validate if user exist in our database
-    const oldUser = await User.findOne({ mail });
+    const existingMail = await User.findOne({ mail });
+    const existingAlias = await User.findOne({ alias });
 
-    if (oldUser) {
-      return res.status(409).send("User Already Exist. Please Login");
+    if (existingMail) {
+      return res.status(409).send("This email already already. Please Login");
+    }
+
+    if (existingAlias) {
+      return res.status(409).send("This alias already already. Please find an other");
     }
 
     //Encrypt user password
@@ -154,8 +157,36 @@ async function register(req,res){
 
     user.save();
 
+    //generate qrcode
+    let data = {
+      firstname:user.firstname,
+      lastname:user.lastname,
+      alias: user.alias,
+      mail:user.mail,
+    }
+    let stringdata = JSON.stringify(data)
+    QRCode.toFile('public/qrcode.png', stringdata, function (error){
+      if (error) console.log(error)
+    });
+   
 
-    //emailer 
+    //generate pdf
+    const doc = new PDFDocument();
+    doc.pipe(fs.createWriteStream('public/welcome.pdf'));
+    const message = "Welcome " + user.alias + ", you successfully created your account";
+    doc
+      .fontSize(25)
+      .text(message, 100, 100);
+
+      doc.image('public/qrcode.png', {
+      fit: [250, 300],
+      align: 'center',
+      valign: 'center'
+    });
+    doc.end();
+
+
+    //generate mail
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -168,9 +199,13 @@ async function register(req,res){
         from: 'nodejstestlp@gmail.com',
         to: user.mail,
         subject: 'Registration email',
-        text: 'GG ' + user.alias + ', your account have been successfully created with this email : ' + user.mail
+        text: "See the attachment",
+        attachments:[
+          {
+            path:'public/welcome.pdf'
+          }
+        ]
       };
-      
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
@@ -178,6 +213,9 @@ async function register(req,res){
           console.log('Email sent: ' + info.response);
         }
       });
+
+
+ 
 
     // return new user
     res.status(201).json(user);

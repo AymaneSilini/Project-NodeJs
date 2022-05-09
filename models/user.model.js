@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 const userSchema = Schema({
   alias: {
     type:String,
-    required: true
+    required: true,
   },
   lastname: {
     type:String,
