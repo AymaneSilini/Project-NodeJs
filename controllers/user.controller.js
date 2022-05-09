@@ -76,7 +76,7 @@ async function login (req, res){
 
     // Validate user input
     if (!(mail && password)) {
-      res.status(400).send("All input is required");
+      res.status(400).json("All input is required");
     }
     // Validate if user exist in our database
     const user = await User.findOne({ mail });
@@ -98,7 +98,7 @@ async function login (req, res){
       res.send(`mail: ${mail} password: ${password}`);
     }
     else {
-        res.status(400).send("Invalid Credentials");
+        res.status(400).json("Invalid Credentials");
     }
   } catch (err) {
     console.log(err);
@@ -116,7 +116,7 @@ async function register(req,res){
 
     // Validate user input
     if (!(mail && password && firstname && lastname && alias)) {
-      res.status(400).send("All input is required");
+      res.status(400).json("All input is required");
     }
 
     // check if user already exist
@@ -125,11 +125,11 @@ async function register(req,res){
     const existingAlias = await User.findOne({ alias });
 
     if (existingMail) {
-      return res.status(409).send("This email already already. Please Login");
+      return res.status(409).json("This email already already. Please Login");
     }
 
     if (existingAlias) {
-      return res.status(409).send("This alias already already. Please find an other");
+      return res.status(409).json("This alias already already. Please find an other");
     }
 
     //Encrypt user password
@@ -149,7 +149,7 @@ async function register(req,res){
       { _id: user._id, mail, userIid: user.userId, role: user.role },
       process.env.TOKEN_KEY,
       {
-        expiresIn: "2h",
+        expiresIn: "4h",
       }
     );
     // save user token
