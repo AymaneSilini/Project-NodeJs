@@ -84,7 +84,7 @@ async function login (req, res){
     if (user && (await bcrypt.compare(password, user.password))) {
       // Create token
       const token = jwt.sign(
-        { _id: user._id, mail, userIid: user.userId},
+        { _id: user._id, mail, userIid: user.userId, role: user.role},
         process.env.TOKEN_KEY,
         {
           expiresIn: "2h",
@@ -146,7 +146,7 @@ async function register(req,res){
 
     // Create token
     const token = jwt.sign(
-      { _id: user._id, mail, userIid: user.userId },
+      { _id: user._id, mail, userIid: user.userId, role: user.role },
       process.env.TOKEN_KEY,
       {
         expiresIn: "2h",
@@ -222,8 +222,8 @@ async function register(req,res){
   } catch (err) {
     console.log(err);
   }
-
 }
+
 module.exports = {
-    getUsers, getUser, postUser, putUser, deleteUser, register, login,
+    getUsers, getUser, postUser, putUser, deleteUser, register, login
 }

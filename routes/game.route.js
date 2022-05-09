@@ -2,6 +2,7 @@ const gameController = require('../controllers/game.controller');
 const express = require('express');
 const gameRouter = express.Router();
 const app = express();
+const auth = require('../middleware/auth');
 
 
 gameRouter.get('/', gameController.getGames);
