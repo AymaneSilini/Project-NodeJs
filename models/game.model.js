@@ -37,11 +37,11 @@ const gameSchema = Schema({
   },
   requirements: { 
     type: Number, ref: "Requirements" ,
-    required: true
+    required: false
   },
   discount: { 
     type: Number, ref: "Discount" ,
-    required: true
+    required: false
   },
 
 }, {timestamps: false});
