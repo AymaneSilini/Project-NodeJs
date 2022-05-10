@@ -18,6 +18,16 @@ function getComment (req, res) {
     .catch((err) => res.status(500).send(err));
 }
 
+function getCommentByGame (req, res) {
+    Comment.find({game: req.params.game})
+    .then((result) =>{
+        if (result) {
+            res.send(result)
+        } else {res.status(400).send(`No comment for game ${req.params.id}`)}
+    })
+    .catch((err) => res.status(500).send(err));
+}
+
 function postComment (req, res) {
     if (!req.body.content) {
         return res.status(400).send('Missing Comment\'s content');
@@ -60,5 +70,5 @@ function deleteComment (req, res) {
 
 module.exports = {
     getComments, getComment, postComment,
-    putComment, deleteComment, 
+    putComment, deleteComment, getCommentByGame
 }
