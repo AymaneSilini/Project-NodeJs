@@ -6,6 +6,7 @@ const app = express();
 
 commentRouter.get('/', commentController.getComments);
 commentRouter.get('/:id', commentController.getComment);
+commentRouter.get('/game/:game', commentController.getCommentByGame);
 commentRouter.post('/', commentController.postComment);
 commentRouter.put('/:id', commentController.putComment);
 commentRouter.delete('/:id', commentController.deleteComment);

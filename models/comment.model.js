@@ -6,7 +6,7 @@ const commentSchema = Schema({
 
   date: {
     type: Date, 
-    required: false
+    required: false,
   },
   content:{
     type: String,
