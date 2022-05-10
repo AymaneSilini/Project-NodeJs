@@ -12,8 +12,6 @@ function getUsers (req, res) {
     .then((result) => {
         res.send(result);
     }).catch((err) => {res.status(500).send(err)});
-    //get the logged user from the token
-    console.log(req.user);
 }
 function getUser (req, res) {
     User.findOne({userId: req.params.id})

@@ -13,7 +13,6 @@ function getGame (req, res) {
     .then((result) =>{
         if (result) {
             res.send(result)
-            console.log(result)
         } else {res.status(400).send(`Game id ${req.params.id} does not exist`)}
     })
     .catch((err) => res.status(500).send(err));
